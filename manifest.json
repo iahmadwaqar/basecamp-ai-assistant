@@ -17,8 +17,10 @@
     "storage"
   ],
   "host_permissions": [
+    "https://*.basecamp.com/*",
     "https://launchpad.37signals.com/*",
-    "https://3.basecampapi.com/*"
+    "https://3.basecampapi.com/*",
+    "https://3.basecamp.com/*"
   ],
   "background": {
     "service_worker": "src/pages/background/index.js"
@@ -26,9 +28,9 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*/*",
-        "https://*/*",
-        "<all_urls>"
+        "https://*.basecamp.com/*",
+        "https://launchpad.37signals.com/*",
+        "https://3.basecamp.com/*"
       ],
       "js": [
         "src/pages/content/index.tsx"
@@ -45,7 +47,7 @@
         "icon-128.png",
         "icon-32.png"
       ],
-      "matches": ["<all_urls>"]
+      "matches": ["https://*.basecamp.com/*", "https://3.basecamp.com/*"]
     }
   ]
 }
