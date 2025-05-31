@@ -52,3 +52,27 @@ div.loading:after {
   background-repeat: no-repeat;
   background-size: 0.1em;
 }
+.bca-list-actionable__row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--tint-ink-10);
+}
+.bca-list-actionable__row .bca-list-actionable__details{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.list-actionable__badge {
+  padding: 2px 8px;
+  border-radius: 4px;
+  min-width: 50px;
+  text-align: center;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+.bca-list-actionable__label{
+    font-weight: 500;
+    
+}

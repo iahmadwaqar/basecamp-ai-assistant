@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill';
-import { getToken, isAuthenticated } from '../../utils/auth/basecampAuth';
+import { getToken, isAuthenticated } from '../utils/auth/basecampAuth';
 
 console.log('background script loaded');
 

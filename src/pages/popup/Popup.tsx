@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { authorize, logout, isAuthenticated } from '../../utils/auth/basecampAuth';
+import { authorize, logout, isAuthenticated } from '../utils/auth/basecampAuth';
 
 export default function Popup() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

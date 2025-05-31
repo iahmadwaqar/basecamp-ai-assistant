@@ -2,7 +2,7 @@ import browser from 'webextension-polyfill';
 
 // Basecamp OAuth configuration
 const AUTH_CONFIG = {
-  clientId: 'e88231ae820315fbfcd20f9d68a2723aaf9c261c', // Replace with your actual client ID after registering
+  clientId: 'e88231ae820315fbfcd20f9d68a2723aaf9c261c',
   authUrl: 'https://launchpad.37signals.com/authorization/new',
   tokenUrl: 'https://launchpad.37signals.com/authorization/token',
   redirectUrl: browser.identity.getRedirectURL(),

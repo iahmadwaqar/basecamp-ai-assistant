@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
-const categories = [
-  { emoji: "📢", label: "Announcement" },
-  { emoji: "🌟", label: "Brainstorming" },
-  { emoji: "✨", label: "Documentation" },
-  { emoji: "✨", label: "FYI" },
-  { emoji: "❤️", label: "Heartbeat" },
-  { emoji: "💡", label: "Pitch" },
-  { emoji: "✨", label: "Project Review" },
-  { emoji: "📈", label: "Project Status" },
-  { emoji: "👋", label: "Question" },
+const statuses = [
+  { label: "Announcement", color: "#FFFFFF", backgroundColor: "#E74C3C" }, // Red
+  { label: "Brainstorming", color: "#000000", backgroundColor: "#FBBF24" }, // Amber
+  { label: "Documentation", color: "#FFFFFF", backgroundColor: "#3B82F6" }, // Blue
+  { label: "FYI", color: "#000000", backgroundColor: "#A5B4FC" }, // Light Indigo
+  { label: "Heartbeat", color: "#FFFFFF", backgroundColor: "#EC4899" }, // Pink
+  { label: "Pitch", color: "#000000", backgroundColor: "#8B5CF6" }, // Violet
+  { label: "Project Review", color: "#FFFFFF", backgroundColor: "#10B981" }, // Emerald
+  { label: "Project Status", color: "#000000", backgroundColor: "#06B6D4" }, // Cyan
+  { label: "Question", color: "#FFFFFF", backgroundColor: "#6366F1" }, // Indigo
 ];
 
 export function Modal({ onClose }: { onClose: () => void }) {
@@ -22,31 +22,62 @@ export function Modal({ onClose }: { onClose: () => void }) {
   if (loading) {
     return <div className="loading"></div>;
   }
+  function getContrastColor(hexColor: string): string {
+    // Convert hex to RGB
+    const r = parseInt(hexColor.substring(1, 3), 16);
+    const g = parseInt(hexColor.substring(3, 5), 16);
+    const b = parseInt(hexColor.substring(5, 7), 16);
 
+    // Calculate relative luminance (perceived brightness)
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+    // Return black for light colors, white for dark colors
+    return luminance > 0.5 ? "#000000" : "#FFFFFF";
+  }
   return (
-    <div className="bca-modal-overlay" onClick={onClose}>
-      <div className="modal-sheet modal-sheet--w-small">
+    <div className="bca-modal-overlay">
+      <div
+        className="modal-sheet modal-sheet--w-medium"
+        style={{ overflowY: "scroll" }}
+      >
         <header className="modal-sheet__header">
-          <h2 className="flush app-mobile__hide">Message Board categories</h2>
+          <h2 className="flush app-mobile__hide">Card Table Statuses</h2>
           <p className="push_half--top flush--bottom">
-            Set up categories for this Message Board below.
+            Set up statuses for this Card Table below.
           </p>
         </header>
         <section className="u-full-width">
-          {categories.map((cat) => (
+          {statuses.map((status) => (
             <div
-              key={cat.label}
+              key={status.label}
               className="list-actionable list-actionable--open-ends flush--bottom"
             >
               <div className="list-actionable__row-group">
-                <div className="list-actionable__row list-actionable__row--hide-when-editing">
-                  <div className="list-actionable__details">
-                    <h4 className="flush">
-                      <span className="list-actionable__emoji">✨</span>
-                      {cat.label}
+                <div className="bca-list-actionable__row">
+                  <div className="bca-list-actionable__details">
+                    <h4 className="bca-list-actionable__label">
+                      {status.label}
                     </h4>
+                    <span
+                      className="list-actionable__badge"
+                      style={{
+                        backgroundColor: status.color,
+                        color: getContrastColor(status.color),
+                      }}
+                    >
+                      Font
+                    </span>
+                    <span
+                      className="list-actionable__badge"
+                      style={{
+                        backgroundColor: status.backgroundColor,
+                        color: getContrastColor(status.backgroundColor),
+                      }}
+                    >
+                      Background
+                    </span>
                   </div>
-                  <span className="list-actionable__actions">
+                  <span className="list-actionable__actions" style={{ border: "unset" }}>
                     <a
                       data-action="category#edit"
                       className="list-actionable__action-icon"
